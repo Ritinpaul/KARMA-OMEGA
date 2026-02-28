@@ -1,0 +1,1 @@
+"""KARMA-OMEGA package root."""

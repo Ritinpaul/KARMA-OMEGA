@@ -1,0 +1,1 @@
+"""MNEMOS NER package."""

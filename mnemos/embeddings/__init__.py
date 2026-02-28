@@ -1,0 +1,1 @@
+"""MNEMOS Embeddings package."""

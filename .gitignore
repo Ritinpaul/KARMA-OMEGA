@@ -1,0 +1,76 @@
+# ─── Python ───────────────────────────────────────────────────────────────────
+__pycache__/
+*.py[cod]
+*$py.class
+*.so
+*.pyd
+*.egg
+*.egg-info/
+dist/
+build/
+.eggs/
+pip-wheel-metadata/
+
+# ─── Virtual Environments ─────────────────────────────────────────────────────
+.venv/
+venv/
+env/
+ENV/
+.env
+!.env.example
+
+# ─── Testing & Coverage ───────────────────────────────────────────────────────
+tests/
+.pytest_cache/
+.coverage
+htmlcov/
+coverage.xml
+*.coveragerc
+pytest.ini
+setup.cfg
+tox.ini
+
+# ─── Markdown (keep only README.md) ──────────────────────────────────────────
+*.md
+!README.md
+
+# ─── IDE & OS ─────────────────────────────────────────────────────────────────
+.idea/
+.vscode/
+*.swp
+*.swo
+.DS_Store
+Thumbs.db
+desktop.ini
+
+# ─── Docker ───────────────────────────────────────────────────────────────────
+# Keep docker-compose.yml — needed for deployment
+# docker-compose.override.yml is local-only
+docker-compose.override.yml
+
+# ─── Data & Models ────────────────────────────────────────────────────────────
+data/raw/
+data/processed/
+*.pkl
+*.pt
+*.bin
+*.h5
+*.safetensors
+models/
+
+# ─── Jupyter ──────────────────────────────────────────────────────────────────
+.ipynb_checkpoints/
+*.ipynb
+
+# ─── Logs ─────────────────────────────────────────────────────────────────────
+*.log
+logs/
+
+# ─── Pinecone / Neo4j local state ─────────────────────────────────────────────
+neo4j_data/
+pinecone_cache/
+
+# ─── Misc ─────────────────────────────────────────────────────────────────────
+*.tmp
+*.bak
+.cache/
