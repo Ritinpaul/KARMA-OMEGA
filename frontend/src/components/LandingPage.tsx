@@ -12,9 +12,6 @@ import {
     Database,
     Lock,
     ChevronRight,
-    TrendingUp,
-    AlertTriangle,
-    Cpu,
     Network,
     Layers,
 } from 'lucide-react'
@@ -40,11 +37,23 @@ const ENGINES = [
         subtitle: 'Knowledge Layer',
         category: 'Analysis',
         desc: 'Forensic ingestion engine with neural-semantic embeddings — stores, indexes, and retrieves structural failure reports from 50+ years of civil engineering data.',
+        shortDesc: 'Neural-semantic forensic memory',
         icon: Brain,
-        gradient: 'from-lime-400 to-green-500',
-        bgGlow: 'bg-lime-500',
+        gradient: 'from-lime-400 via-green-400 to-emerald-500',
+        headerGradient: 'from-lime-500/20 via-green-500/10 to-transparent',
+        accentColor: 'text-lime-400',
+        glowColor: 'rgba(163,230,53,0.15)',
+        borderColor: 'border-lime-500/20',
+        tagBg: 'bg-lime-500/10',
+        tagText: 'text-lime-300',
+        tagBorder: 'border-lime-500/20',
+        metricBg: 'bg-lime-500/[0.06]',
+        metricBorder: 'border-lime-500/[0.1]',
+        metricValue: 'text-lime-300',
+        ringColor: 'ring-lime-400/30',
         status: 'ACTIVE',
         version: 'v0.1.0',
+        power: 96,
         metrics: { accuracy: '96%', reports: '12.8K', latency: '45ms' },
         features: ['Vector Embeddings', 'RAG Retrieval', 'Forensic Reports', 'Semantic Search'],
     },
@@ -54,11 +63,23 @@ const ENGINES = [
         subtitle: 'Pattern Synthesis',
         category: 'Analysis',
         desc: 'Cross-domain failure gene extraction and combinatorial risk synthesis using Monte Carlo simulation with novelty detection for never-before-seen patterns.',
+        shortDesc: 'Combinatorial risk synthesis AI',
         icon: Eye,
-        gradient: 'from-green-400 to-emerald-500',
-        bgGlow: 'bg-green-500',
+        gradient: 'from-violet-400 via-purple-400 to-fuchsia-500',
+        headerGradient: 'from-violet-500/20 via-purple-500/10 to-transparent',
+        accentColor: 'text-violet-400',
+        glowColor: 'rgba(167,139,250,0.15)',
+        borderColor: 'border-violet-500/20',
+        tagBg: 'bg-violet-500/10',
+        tagText: 'text-violet-300',
+        tagBorder: 'border-violet-500/20',
+        metricBg: 'bg-violet-500/[0.06]',
+        metricBorder: 'border-violet-500/[0.1]',
+        metricValue: 'text-violet-300',
+        ringColor: 'ring-violet-400/30',
         status: 'ACTIVE',
         version: 'v0.1.0',
+        power: 94,
         metrics: { accuracy: '94%', patterns: '2.3K', novelty: '12%' },
         features: ['Failure Genes', 'Risk Alerts', 'Novelty Detection', 'Monte Carlo'],
     },
@@ -68,11 +89,23 @@ const ENGINES = [
         subtitle: 'Physics Oracle',
         category: 'Prevention',
         desc: 'PINN-based structural analysis with generative NSGA-III prevention—validates every intervention with real physics before deployment.',
+        shortDesc: 'Physics-informed safety oracle',
         icon: Shield,
-        gradient: 'from-emerald-400 to-teal-500',
-        bgGlow: 'bg-emerald-500',
+        gradient: 'from-amber-400 via-orange-400 to-red-500',
+        headerGradient: 'from-amber-500/20 via-orange-500/10 to-transparent',
+        accentColor: 'text-amber-400',
+        glowColor: 'rgba(251,191,36,0.15)',
+        borderColor: 'border-amber-500/20',
+        tagBg: 'bg-amber-500/10',
+        tagText: 'text-amber-300',
+        tagBorder: 'border-amber-500/20',
+        metricBg: 'bg-amber-500/[0.06]',
+        metricBorder: 'border-amber-500/[0.1]',
+        metricValue: 'text-amber-300',
+        ringColor: 'ring-amber-400/30',
         status: 'ACTIVE',
         version: 'v0.1.0',
+        power: 88,
         metrics: { safety: '3.2x', models: '8', pareto: '24' },
         features: ['PINN Surrogates', 'Safety Factors', 'Pareto Optimization', 'Generative'],
     },
@@ -82,11 +115,23 @@ const ENGINES = [
         subtitle: 'Federation Engine',
         category: 'Network',
         desc: 'Privacy-preserving federated learning across construction sites. LoRA adapters with differential privacy guarantees for global knowledge sharing.',
+        shortDesc: 'Federated privacy intelligence',
         icon: Server,
-        gradient: 'from-teal-400 to-cyan-500',
-        bgGlow: 'bg-teal-500',
+        gradient: 'from-sky-400 via-cyan-400 to-teal-500',
+        headerGradient: 'from-sky-500/20 via-cyan-500/10 to-transparent',
+        accentColor: 'text-sky-400',
+        glowColor: 'rgba(56,189,248,0.15)',
+        borderColor: 'border-sky-500/20',
+        tagBg: 'bg-sky-500/10',
+        tagText: 'text-sky-300',
+        tagBorder: 'border-sky-500/20',
+        metricBg: 'bg-sky-500/[0.06]',
+        metricBorder: 'border-sky-500/[0.1]',
+        metricValue: 'text-sky-300',
+        ringColor: 'ring-sky-400/30',
         status: 'ACTIVE',
         version: 'v0.1.0',
+        power: 91,
         metrics: { sites: '4', privacy: '≤5.0ε', rounds: '47' },
         features: ['LoRA Adapters', 'DP Guarantees', 'Global Model', 'Knowledge Sharing'],
     },
@@ -320,8 +365,8 @@ export default function LandingPage({ onEnter }: { onEnter: () => void }) {
                                     key={tab}
                                     onClick={() => setActiveEngineTab(tab)}
                                     className={`px-4 py-2 rounded-lg text-sm font-medium transition-all relative ${activeEngineTab === tab
-                                            ? 'text-lime-300'
-                                            : 'text-neutral-400 hover:text-white'
+                                        ? 'text-lime-300'
+                                        : 'text-neutral-400 hover:text-white'
                                         }`}
                                 >
                                     {activeEngineTab === tab && (
@@ -349,7 +394,7 @@ export default function LandingPage({ onEnter }: { onEnter: () => void }) {
                     </div>
 
                     {/* Engine Cards Grid — marketplace style */}
-                    <div className="grid grid-cols-1 sm:grid-cols-2 lg:grid-cols-4 gap-4">
+                    <div className="grid grid-cols-1 sm:grid-cols-2 lg:grid-cols-4 gap-5">
                         <AnimatePresence mode="popLayout">
                             {filteredEngines.map((engine, i) => (
                                 <motion.div
@@ -358,52 +403,115 @@ export default function LandingPage({ onEnter }: { onEnter: () => void }) {
                                     initial={{ opacity: 0, y: 20, scale: 0.95 }}
                                     animate={{ opacity: 1, y: 0, scale: 1 }}
                                     exit={{ opacity: 0, scale: 0.95 }}
-                                    transition={{ delay: i * 0.08 }}
+                                    transition={{ delay: i * 0.1 }}
                                     onMouseEnter={() => setHoveredEngine(engine.id)}
                                     onMouseLeave={() => setHoveredEngine(null)}
                                     className="group cursor-pointer"
                                 >
-                                    <div className="relative rounded-2xl overflow-hidden border border-lime-500/[0.06] bg-[#0a0f0a]/80 backdrop-blur-lg hover:border-lime-500/20 transition-all duration-300 hover:shadow-[0_0_40px_rgba(163,230,53,0.06)]">
+                                    <div
+                                        className={`relative rounded-2xl overflow-hidden border border-white/[0.06] bg-[#0a0a0a]/90 backdrop-blur-xl transition-all duration-500 hover:${engine.borderColor}`}
+                                        style={{
+                                            boxShadow: hoveredEngine === engine.id ? `0 0 50px ${engine.glowColor}, 0 20px 60px rgba(0,0,0,0.5)` : '0 4px 30px rgba(0,0,0,0.3)',
+                                        }}
+                                    >
 
-                                        {/* Card Header — gradient area (like the item image) */}
-                                        <div className={`relative h-36 bg-gradient-to-br ${engine.gradient} overflow-hidden`}>
-                                            <div className="absolute inset-0 bg-black/60" />
+                                        {/* ─── Card Header — rich gradient area ─── */}
+                                        <div className={`relative h-44 bg-gradient-to-br ${engine.gradient} overflow-hidden`}>
+                                            {/* Dark mesh overlay */}
+                                            <div className="absolute inset-0 bg-black/50" />
+                                            <div className={`absolute inset-0 bg-gradient-to-t ${engine.headerGradient}`} />
+
+                                            {/* Animated grid pattern */}
+                                            <div className="absolute inset-0 opacity-[0.08]" style={{
+                                                backgroundImage: `radial-gradient(circle at 1px 1px, white 1px, transparent 0)`,
+                                                backgroundSize: '24px 24px',
+                                            }} />
+
+                                            {/* Floating particles */}
+                                            <motion.div
+                                                animate={{ y: [-8, 8, -8], scale: [1, 1.2, 1] }}
+                                                transition={{ repeat: Infinity, duration: 3 + i, ease: "easeInOut" }}
+                                                className="absolute top-6 right-8 w-3 h-3 rounded-full bg-white/20 blur-[2px]"
+                                            />
+                                            <motion.div
+                                                animate={{ y: [6, -10, 6], x: [-4, 4, -4] }}
+                                                transition={{ repeat: Infinity, duration: 4 + i, ease: "easeInOut" }}
+                                                className="absolute bottom-8 left-10 w-2 h-2 rounded-full bg-white/15 blur-[1px]"
+                                            />
+                                            <motion.div
+                                                animate={{ y: [4, -6, 4] }}
+                                                transition={{ repeat: Infinity, duration: 5 + i, ease: "easeInOut" }}
+                                                className="absolute top-16 left-6 w-1.5 h-1.5 rounded-full bg-white/10"
+                                            />
+
+                                            {/* Center icon with glow ring */}
                                             <div className="absolute inset-0 flex items-center justify-center">
                                                 <motion.div
-                                                    animate={hoveredEngine === engine.id ? { scale: 1.1, rotate: 5 } : { scale: 1, rotate: 0 }}
+                                                    animate={hoveredEngine === engine.id ? { scale: 1.15, rotate: 8 } : { scale: 1, rotate: 0 }}
                                                     transition={{ type: "spring", bounce: 0.3 }}
+                                                    className="relative"
                                                 >
-                                                    <engine.icon className="w-14 h-14 text-white/90 drop-shadow-[0_0_20px_rgba(255,255,255,0.3)]" />
+                                                    <div className={`absolute inset-0 -m-4 rounded-full ring-2 ${engine.ringColor} opacity-0 group-hover:opacity-100 transition-opacity duration-500`} />
+                                                    <div className="p-4 rounded-2xl bg-black/30 backdrop-blur-sm border border-white/10">
+                                                        <engine.icon className="w-10 h-10 text-white drop-shadow-[0_0_25px_rgba(255,255,255,0.4)]" />
+                                                    </div>
                                                 </motion.div>
                                             </div>
+
                                             {/* Status badge */}
-                                            <div className="absolute top-3 left-3 flex items-center gap-1.5 px-2.5 py-1 rounded-full bg-black/50 backdrop-blur-md border border-lime-500/20">
-                                                <span className="w-1.5 h-1.5 rounded-full bg-lime-400 animate-pulse" />
-                                                <span className="text-[10px] font-mono text-lime-400 font-bold">{engine.status}</span>
+                                            <div className={`absolute top-3 left-3 flex items-center gap-1.5 px-2.5 py-1 rounded-full bg-black/50 backdrop-blur-md border ${engine.borderColor}`}>
+                                                <span className={`w-1.5 h-1.5 rounded-full ${engine.accentColor.replace('text-', 'bg-')} animate-pulse`} />
+                                                <span className={`text-[10px] font-mono ${engine.accentColor} font-bold`}>{engine.status}</span>
                                             </div>
+
                                             {/* Version badge */}
-                                            <div className="absolute top-3 right-3 px-2 py-1 rounded-md bg-black/50 backdrop-blur-md text-[10px] font-mono text-neutral-400 border border-white/[0.06]">
+                                            <div className="absolute top-3 right-3 px-2.5 py-1 rounded-lg bg-black/50 backdrop-blur-md text-[10px] font-mono text-neutral-300 border border-white/10 font-bold">
                                                 {engine.version}
                                             </div>
+
+                                            {/* Bottom gradient fade */}
+                                            <div className="absolute bottom-0 left-0 right-0 h-16 bg-gradient-to-t from-[#0a0a0a] to-transparent" />
                                         </div>
 
-                                        {/* Card Body */}
-                                        <div className="p-5">
+                                        {/* ─── Card Body ─── */}
+                                        <div className="p-5 pt-3">
                                             {/* Name & subtitle */}
-                                            <div className="flex items-start justify-between mb-3">
+                                            <div className="flex items-start justify-between mb-1">
                                                 <div>
-                                                    <h3 className="font-bold text-lg text-white tracking-wide group-hover:text-lime-300 transition-colors">{engine.name}</h3>
-                                                    <p className="text-[11px] text-neutral-500 font-mono">{engine.subtitle}</p>
+                                                    <h3 className={`font-extrabold text-lg text-white tracking-wide group-hover:${engine.accentColor} transition-colors`}>{engine.name}</h3>
+                                                    <p className={`text-[11px] font-mono ${engine.accentColor} opacity-60`}>{engine.subtitle}</p>
                                                 </div>
-                                                <ArrowRight className="w-4 h-4 text-neutral-600 group-hover:text-lime-400 group-hover:translate-x-1 transition-all mt-1" />
+                                                <div className={`p-1.5 rounded-lg ${engine.tagBg} border ${engine.tagBorder} opacity-0 group-hover:opacity-100 transition-all transform group-hover:translate-x-0 -translate-x-1`}>
+                                                    <ArrowRight className={`w-3.5 h-3.5 ${engine.accentColor}`} />
+                                                </div>
                                             </div>
 
-                                            {/* Quick Metrics (like price/owner info) */}
+                                            {/* Short description */}
+                                            <p className="text-[11px] text-neutral-500 mb-4 leading-relaxed">{engine.shortDesc}</p>
+
+                                            {/* Power bar */}
+                                            <div className="mb-4">
+                                                <div className="flex items-center justify-between mb-1.5">
+                                                    <span className="text-[10px] text-neutral-500 font-mono uppercase tracking-wider">Engine Power</span>
+                                                    <span className={`text-[11px] font-bold font-mono ${engine.accentColor}`}>{engine.power}%</span>
+                                                </div>
+                                                <div className="h-1.5 rounded-full bg-white/[0.04] overflow-hidden">
+                                                    <motion.div
+                                                        initial={{ width: 0 }}
+                                                        whileInView={{ width: `${engine.power}%` }}
+                                                        viewport={{ once: true }}
+                                                        transition={{ duration: 1.2, delay: i * 0.15, ease: "easeOut" }}
+                                                        className={`h-full rounded-full bg-gradient-to-r ${engine.gradient}`}
+                                                    />
+                                                </div>
+                                            </div>
+
+                                            {/* Quick Metrics */}
                                             <div className="grid grid-cols-3 gap-2 mb-4">
                                                 {Object.entries(engine.metrics).map(([key, val]) => (
-                                                    <div key={key} className="text-center py-2 rounded-lg bg-black/30 border border-white/[0.04]">
-                                                        <div className="text-sm font-bold text-white">{val}</div>
-                                                        <div className="text-[9px] text-neutral-500 font-mono uppercase">{key}</div>
+                                                    <div key={key} className={`text-center py-2.5 rounded-xl ${engine.metricBg} border ${engine.metricBorder} transition-colors group-hover:border-opacity-40`}>
+                                                        <div className={`text-sm font-bold ${engine.metricValue}`}>{val}</div>
+                                                        <div className="text-[8px] text-neutral-500 font-mono uppercase tracking-wider mt-0.5">{key}</div>
                                                     </div>
                                                 ))}
                                             </div>
@@ -411,17 +519,20 @@ export default function LandingPage({ onEnter }: { onEnter: () => void }) {
                                             {/* Feature tags */}
                                             <div className="flex flex-wrap gap-1.5">
                                                 {engine.features.slice(0, 3).map(f => (
-                                                    <span key={f} className="text-[10px] px-2 py-0.5 rounded-full bg-lime-500/[0.06] border border-lime-500/[0.08] text-lime-300/70 font-mono">
+                                                    <span key={f} className={`text-[10px] px-2.5 py-1 rounded-lg ${engine.tagBg} border ${engine.tagBorder} ${engine.tagText} font-mono font-medium`}>
                                                         {f}
                                                     </span>
                                                 ))}
                                                 {engine.features.length > 3 && (
-                                                    <span className="text-[10px] px-2 py-0.5 rounded-full bg-white/[0.03] border border-white/[0.04] text-neutral-500 font-mono">
+                                                    <span className="text-[10px] px-2.5 py-1 rounded-lg bg-white/[0.03] border border-white/[0.06] text-neutral-500 font-mono font-medium">
                                                         +{engine.features.length - 3}
                                                     </span>
                                                 )}
                                             </div>
                                         </div>
+
+                                        {/* Bottom accent line */}
+                                        <div className={`h-[2px] bg-gradient-to-r ${engine.gradient} opacity-30 group-hover:opacity-80 transition-opacity`} />
                                     </div>
                                 </motion.div>
                             ))}
