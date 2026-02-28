@@ -15,11 +15,11 @@ type SiteNode = {
 }
 
 const NODES: SiteNode[] = [
-    { id: 'central', name: 'AION Coordinator', position: [0, 0, 0], type: 'central', color: '#6366f1' }, // Indigo
-    { id: 'mumbai', name: 'Mumbai Bridge', position: [-4, 2, -2], type: 'site', color: '#14b8a6' },    // Teal
-    { id: 'delhi', name: 'Delhi Metro', position: [3, 3, -1], type: 'site', color: '#14b8a6' },
-    { id: 'chennai', name: 'Chennai Corridor', position: [2, -3, 2], type: 'site', color: '#14b8a6' },
-    { id: 'kerala', name: 'Kochi Viaduct', position: [-3, -2, 3], type: 'site', color: '#f59e0b' },    // Amber (Active event)
+    { id: 'central', name: 'AION Coordinator', position: [0, 0, 0], type: 'central', color: '#a3e635' },
+    { id: 'mumbai', name: 'Mumbai Bridge', position: [-4, 2, -2], type: 'site', color: '#22c55e' },
+    { id: 'delhi', name: 'Delhi Metro', position: [3, 3, -1], type: 'site', color: '#22c55e' },
+    { id: 'chennai', name: 'Chennai Corridor', position: [2, -3, 2], type: 'site', color: '#22c55e' },
+    { id: 'kerala', name: 'Kochi Viaduct', position: [-3, -2, 3], type: 'site', color: '#f59e0b' },
 ]
 
 // --- Components ---
@@ -30,7 +30,7 @@ function ConnectionLine({ start, end, active }: { start: [number, number, number
     return (
         <Line
             points={points}
-            color={active ? '#6366f1' : '#ffffff'}
+            color={active ? '#a3e635' : '#ffffff'}
             opacity={active ? 0.8 : 0.2}
             transparent
             lineWidth={active ? 3 : 1}
@@ -97,26 +97,32 @@ function SiteSphere({ node, isSyncing, onClick }: { node: SiteNode, isSyncing: b
     )
 }
 
+// This component must live INSIDE <Canvas> to use useFrame
+function SyncController({ onSyncChange }: { onSyncChange: (syncing: boolean) => void }) {
+    useFrame((state) => {
+        const time = state.clock.elapsedTime
+        onSyncChange(Math.sin(time) > 0.5)
+    })
+    return null
+}
+
 export default function AionFederationGraph() {
     const [isSyncing, setIsSyncing] = useState(false)
     const [selectedNode, setSelectedNode] = useState<SiteNode | null>(null)
 
-    // Simulate periodic syncing (Federated Learning Rounds)
-    useFrame((state) => {
-        const time = state.clock.elapsedTime
-        setIsSyncing(Math.sin(time) > 0.5) // Sync for half a second every ~6 seconds
-    })
-
     return (
-        <div className="w-full h-full min-h-[500px] relative rounded-xl overflow-hidden glass border border-indigo-500/20 shadow-[0_0_50px_rgba(99,102,241,0.05)]">
+        <div className="w-full h-full min-h-[500px] relative rounded-xl overflow-hidden glass border border-lime-500/10 shadow-[0_0_50px_rgba(163,230,53,0.04)]">
 
             {/* 3D Canvas */}
             <Canvas camera={{ position: [0, 2, 8], fov: 60 }}>
-                <color attach="background" args={['#030712']} />
+                <color attach="background" args={['#050505']} />
                 <ambientLight intensity={0.5} />
-                <pointLight position={[10, 10, 10]} intensity={1} color="#6366f1" />
+                <pointLight position={[10, 10, 10]} intensity={1} color="#a3e635" />
                 <Stars radius={100} depth={50} count={3000} factor={4} fade speed={1} />
                 <OrbitControls enableZoom={false} autoRotate autoRotateSpeed={0.5} />
+
+                {/* Sync controller must be inside Canvas to use useFrame */}
+                <SyncController onSyncChange={setIsSyncing} />
 
                 {/* Render nodes */}
                 {NODES.map(node => (
@@ -141,15 +147,15 @@ export default function AionFederationGraph() {
 
             {/* UI Overlay */}
             <div className="absolute top-4 left-4 pointer-events-none">
-                <h3 className="text-lg font-bold text-indigo-400 tracking-wider">AION GLOBAL NETWORK</h3>
-                <p className="text-xs text-gray-500 font-mono mt-1">
+                <h3 className="text-lg font-bold text-lime-400 tracking-wider">AION GLOBAL NETWORK</h3>
+                <p className="text-xs text-neutral-500 font-mono mt-1">
                     Differential Privacy ε ≤ 5.0 | LoRA Adapters
                 </p>
             </div>
 
             <div className="absolute top-4 right-4 flex items-center gap-2 pointer-events-none">
-                <div className={`w-2 h-2 rounded-full ${isSyncing ? 'bg-teal-400 animate-pulse shadow-[0_0_10px_#2dd4bf]' : 'bg-gray-600'}`} />
-                <span className="text-xs font-mono text-gray-400">
+                <div className={`w-2 h-2 rounded-full ${isSyncing ? 'bg-lime-400 animate-pulse shadow-[0_0_10px_#a3e635]' : 'bg-neutral-600'}`} />
+                <span className="text-xs font-mono text-neutral-400">
                     {isSyncing ? 'AGGREGATING KNOWLEDGE...' : 'NETWORK IDLE'}
                 </span>
             </div>
@@ -168,16 +174,16 @@ export default function AionFederationGraph() {
 
                     <div className="space-y-2 text-xs font-mono">
                         <div className="flex justify-between">
-                            <span className="text-gray-400">Type</span>
-                            <span className="text-teal-400">{selectedNode.type.toUpperCase()}</span>
+                            <span className="text-neutral-400">Type</span>
+                            <span className="text-lime-400">{selectedNode.type.toUpperCase()}</span>
                         </div>
                         <div className="flex justify-between">
-                            <span className="text-gray-400">Status</span>
-                            <span className="text-green-400">ONLINE</span>
+                            <span className="text-neutral-400">Status</span>
+                            <span className="text-lime-400">ONLINE</span>
                         </div>
                         {selectedNode.type === 'site' && (
                             <div className="flex justify-between mt-2 pt-2 border-t border-white/10">
-                                <span className="text-gray-400">Privacy Budget</span>
+                                <span className="text-neutral-400">Privacy Budget</span>
                                 <span className="text-yellow-400">0.86 ε / 5.0 ε</span>
                             </div>
                         )}
